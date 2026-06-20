@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Briefing météo</title>
+		<title>Briefing météo LFGU</title>
 
 		<meta name="description" content="Une collecte automatique de données météo pour les alpes du sud">
 		<meta name="author" content="Marcos Ossedat, Baptiste DESPREZ, BFE, Billy, CPT, marc Terrier ...">
@@ -49,21 +49,21 @@
                     // le site notam de l'aviation civile n'accepte que 12 aérodromes maximum par requête.
                     // en créant des secteurs d'un nombre maximum de 12 aérodromes, on arrive à nos fins.
                     // Ajoutez autant de secteurs que besoin.
-                    var listeAeros = [
-                        { nom: 'Alpes du Sud',
-                          liste: ['LFMX','LFNS','LFNA','LFTM','LFNJ','LFTP','LFNF','LFNC','LFMR','LFMF']},
-                        { nom: 'Rhone',
-                          liste: ['LFJF','LFNH','LFJE','LFHE','LFLU','LFHD','LFKE']},
-                        { nom: 'Alpes du Nord',
-                          liste: ['LFLG','LFLE','LFKA','LFKA','LFKX','LFLJ','LFKD','LFKR','LFLP','LFHM','LFHZ']},
-            
+					var listeAeros = [
+                        { nom: 'Lorraine - Alsace Nord',
+                          liste: ['LFQU','LFGC','LFSH','LFJL','LFEZ']},
+                        { nom: 'Lorraine - Alsace Sud / Vosges',
+                          liste: ['LFGA','LFSG']},
+                        { nom: 'Allemagne - Sarre / Palatinat',
+                          liste: ['EDRZ','EDDR','ETAR']},
+ 
                     ];
                     // liste des notams de FIR à afficher, (un devrait suffir dans la plupart des cas)
                     var listeFIR = [
-                    { nom: 'FIR Marseille',
-                    liste: ['LFMM']},
-                    //{ nom: 'FIR Paris',
-                    //liste: ['LFFF']},
+                    { nom: 'FIR Reims',
+                    liste: ['LFRR']},
+					{ nom: 'FIR Langen (Allemagne, si dégagement coté DE)',
+                    liste: ['EDGG']},
                     ];
             
             
@@ -98,8 +98,8 @@
                     <p><small>Alpes du sud <script>document.write(day+'/'+month+'/'+year);</script></small></p>
                     <!-- une astuce qui permet de se connecter automatiquement au site de météo france pour accéder aux cartes des vent (utilisez votre login et mot de passe tel que décrit dans https://github.com/gabouls8/briefing-meteo/blob/master/README.md) -->
                     <form id='formloginaeroweb' action="https://aviation.meteo.fr/ajax/login_valid.php" target="aeroweb-iframe" method="post">
-                        <input type="hidden" name='login' value='votre_login'>
-                        <input type="hidden" name='password' value='votre_password_crypté'>
+                        <input type="hidden" name='login' value='krogoth57'>
+                        <input type="hidden" name='password' value='e50d0d87468500d0400c8f7a6da93739'>
                     </form>
                     <iframe type="hidden" name='aeroweb-iframe' src="https://aviation.meteo.fr/ajax/login_valid.php" width="0" height="0"></iframe>
                     <script type="text/javascript">
@@ -328,13 +328,13 @@
             			
             <!-- sondage météociel -->
             	<section>
-                    <h4>Sondage modélisé Météociel / Saint Auban</h4>
-                    <iframe src="http://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=44.0825&lon=5.99417" width="1024" height="768"></iframe>
+                    <h4>Sondage modélisé Météociel / Sarreguemines (LFGU)</h4>
+					<iframe src="http://www.meteociel.fr/modeles/sondage2arome.php?archive=0&amp;ech=6&amp;map=1&amp;wrf=0&amp;region=&amp;type=1&amp;lat=49.1289&amp;lon=7.1056" width="1024" height="768"></iframe>
 			    </section>
 			
 			    <section>
-                    <h4>Sondage modélisé Météociel / Briançon</h4>
-                    <iframe src="http://www.meteociel.fr/modeles/sondage2arome.php?archive=0&ech=6&map=1&wrf=0&region=&type=1&lat=44.8964&lon=6.64941" width="1024" height="768"></iframe>
+                    <h4>Sondage modélisé Météociel / Saarbrücken (EDDR, dégagement DE proche)</h4>
+                    <iframe src="http://www.meteociel.fr/modeles/sondage2arome.php?archive=0&amp;ech=6&amp;map=1&amp;wrf=0&amp;region=&amp;type=1&amp;lat=49.2147&amp;lon=7.1095" width="1024" height="768"></iframe>
 			    </section>
 			
 			
