@@ -315,7 +315,17 @@
                             $("#fl75").text(Math.round(delta + 2286));
                         }
                         $(document).ready(function() {
-                            actualise_tableau($("#qnh").val());
+                            fetch('https://aviationweather.gov/api/data/metar?ids=EDDR&format=json')
+                                .then(function(r){ return r.json(); })
+                                .then(function(data){
+                                    if(data && data[0] && data[0].altim) {
+                                        var qnh = Math.round(data[0].altim);
+                                        $("#qnh").val(qnh);
+                                        $("#rawMetar").html(data[0].rawOb);
+                                        actualise_tableau(qnh);
+                                    }
+                                })
+                                .catch(function(){ actualise_tableau($("#qnh").val()); });
                         });
                         $("#qnh").on("input", function() {
                             actualise_tableau($(this).val());
@@ -324,7 +334,7 @@
 
                     <h4>Table des Niveaux de Vol</h4>
                     <div class="div_qnh">
-
+                        <h5 style="font-size: 16px;" id="rawMetar"></h5>
                         <div style="display:block; ">
                             <table class="alti" >
                                 <tbody>
