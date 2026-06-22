@@ -305,89 +305,40 @@
 			    <section>
 			    <section>
                     <script>
-                        function round5(x){
-                            return Math.ceil(x/5)*5;
+                        function actualise_tableau(qnh_value) {
+                            var mhPa = 8.5344;
+                            var pMer = 1013.25;
+                            var delta = (qnh_value - pMer) * mhPa;
+                            $("#delta").text(Math.round(delta));
+                            $("#fl50").text(Math.round(delta + 1524));
+                            $("#fl65").text(Math.round(delta + 1981));
+                            $("#fl75").text(Math.round(delta + 2286));
                         }
-            
                         $(document).ready(function() {
-                            $("#qnh").change(function() {
-                                var qnh_value = $("#qnh").val();
-                                var mhPa = 8.5344;
-                                var pMer = 1013.25;
-                                var delta = 0;
-                                $("#qnh").val(qnh_value);
-            
-                                delta = (qnh_value - pMer) * mhPa;
-                                delta = delta.toFixed(0);
-                                $("#delta").text(delta);
-                                
-                                fl = delta*1 + 2286*1;
-                                fl = round5(fl);
-                                ;
-                                $("#fl75").text(fl);
-                                
-                                fl = delta*1 + 3505*1;
-                                fl = round5(fl);
-                                ;
-                                $("#fl115").text(fl);
-            
-                                fl = delta*1 + 3810*1;
-                                fl = round5(fl);
-                                ;
-                                $("#fl125").text(fl);
-            
-                                fl = delta*1 + 4115*1;
-                                fl = round5(fl);
-                                ;
-                                $("#fl135").text(fl);
-            
-                                fl = delta*1 + 4419*1;
-                                fl = round5(fl);
-                                ;
-                                $("#fl145").text(fl);                    
-            
-                                fl = delta*1 + 4724*1;
-                                fl = round5(fl);
-                                ;
-                                $("#fl155").text(fl);
-                                
-                                fl = delta*1 + 5943*1;
-                                fl = round5(fl);
-                                fl = fl+' (5800 Bure)';
-                                $("#fl195").text(fl);
-                            });
+                            actualise_tableau($("#qnh").val());
+                        });
+                        $("#qnh").on("input", function() {
+                            actualise_tableau($(this).val());
                         });
                     </script>
-                    
+
                     <h4>Table des Niveaux de Vol</h4>
                     <div class="div_qnh">
-            
+
                         <div style="display:block; ">
                             <table class="alti" >
                                 <tbody>
                                 <tr>
-                                    <th>QNH</th><th><input type="text" id="qnh" class="big_input_qnh" value="1000"></th><th>FL</th><th class='centre'>Altitude du jour</th>
+                                    <th>QNH</th><th><input type="text" id="qnh" class="big_input_qnh" value="1013"></th><th>FL</th><th class='centre'>Altitude du jour</th>
                                 </tr>
                                 <tr>
-                                    <td></td><td></td><td>75</td><td class='centre' id='fl75'>2175</td>
+                                    <td>Delta</td><td id="delta">0</td><td>50</td><td class='centre' id='fl50'>1524</td>
                                 </tr>
                                 <tr>
-                                    <td>Delta</td><td id="delta">-113</td><td>115</td><td class='centre' id='fl115'>3395</td>
+                                    <td></td><td></td><td>65</td><td class='centre' id='fl65'>1981</td>
                                 </tr>
                                 <tr>
-                                    <td></td><td></td><td>125</td><td class='centre' id='fl125'>3700</td>
-                                </tr>
-                                <tr>
-                                    <td></td><td></td><td>135</td><td class='centre' id='fl135'>4005</td>
-                                </tr>
-                                <tr>
-                                    <td></td><td></td><td>145</td><td class='centre' id='fl145'>4310</td>
-                                </tr>
-                                <tr>
-                                    <td></td><td></td><td>155</td><td class='centre' id='fl155'>4615</td>
-                                </tr>
-                                <tr>
-                                    <td></td><td></td><td>195</td><td class='centre' id='fl195'>5830 (5800 Bure)</td>
+                                    <td></td><td></td><td>75</td><td class='centre' id='fl75'>2286</td>
                                 </tr>
                             </tbody></table>
                         </div>
@@ -395,7 +346,7 @@
                            <p> SS : <input type="text" id="ss" class="big_input_qnh" > </p>
                            <p>Fin des vols : <input type="text" id="fdv" class="big_input_qnh" ></p>
                         </div>
-            
+
                     </div>
 			        
 			    </section>
