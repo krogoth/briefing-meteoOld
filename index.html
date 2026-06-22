@@ -14,6 +14,8 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
         <link rel="stylesheet" href="./plugin/gallery/gallery.css">
@@ -84,6 +86,14 @@
                     if(day.toString().length==1){var zero = '0'; day = zero.concat(day);}
                     var ymd = year.toString().concat(month.toString().concat(day.toString()));
 
+					var yesterday = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+                    var yesterday_day = yesterday.getUTCDate();
+                    if(yesterday_day.toString().length==1){var zero = '0'; yesterday_day = zero.concat(yesterday_day);}
+
+					var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+                    var tomorrow_day = tomorrow.getUTCDate();
+                    if(tomorrow_day.toString().length==1){var zero = '0'; tomorrow_day = zero.concat(tomorrow_day);}
+
                     function sleep(miliseconds) {
                         var currentTime = new Date().getTime();
                         while (currentTime + miliseconds >= new Date().getTime()) {
@@ -110,98 +120,35 @@
 			              
 		
 			
-			    <!-- un slide -->
+			    <!-- Fronts KNMI hier / aujourd'hui / demain -->
+			    <section>
+                    <h4>Prévision Front HIER à 12H</h4>
+                    <script>
+                        document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+yesterday_day+'12_large.gif" style="height:620px">');
+                    </script>
+			    </section>
+
 			    <section>
                     <h4>Prévision Front à 12H</h4>
                     <script>
                         document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+day+'12_large.gif" style="height:620px">');
                     </script>
 			    </section>
-			
-			
-			    <!-- un slide -->
-			    <!-- les photos satellites sont chargées une à une et réassemblées en image animée avec la librairie gallery.css pour reveal.js -->
-			    <section data-autoslide="11000">
-                    <h4>Satellite infrarouge Europe</h4>
-                    <ul class="gallery" data-interval="0.5" data-iterations="2">
-                        <script>
-                            var minutesat = minutes;
-                            var hoursat = hours;
-            
-                            if(minutesat>=0){minutesat = '00';}
-                            if(minutesat>=15){minutesat = '15';}
-                            if(minutesat>=30){minutesat = '30';}
-                            if(minutesat>=45){minutesat = '45';}
-            
-                            var previousSat = function(){
-                                if(minutesat=='00'){minutesat = '45'; hoursat--; if(hoursat.toString().length==1){var zero = '0'; hoursat = zero.concat(hoursat);}}
-                                else{ 
-                                    if(minutesat=='15'){minutesat = '00';}
-                                    else{
-                                        if(minutesat=='30'){minutesat = '15';}
-                                        else{
-                                            if(minutesat=='45'){minutesat = '30';}
-                                        }
-                                    }
-                                }
-                            }
-            
-                            var arrayImages = [];
-                            for(i=0; i<10; i++){
-                                arrayImages.push('<li><img src="https://fr.sat24.com/image?type=infraPolair&region=eu&timestamp='+ymd+hoursat+minutesat+ '"></li>');
-                                previousSat();
-                            }
-                            for(j=arrayImages.length-1; j>0; j--){
-                                document.write(arrayImages[j]);
-                                if(j==1){document.write(arrayImages[j]); document.write(arrayImages[j]);}
-            
-                            }
-                        </script>
-                    </ul>
+
+			    <section>
+                    <h4>Prévision Front DEMAIN à 12H</h4>
+                    <script>
+                        document.write('<img src="https://cdn.knmi.nl/knmi/map/page/weer/waarschuwingen_verwachtingen/weerkaarten/PL'+tomorrow_day+'12_large.gif" style="height:620px">');
+                    </script>
 			    </section>
 			
 			
-			    <!-- un slide -->
-			    <!-- les photos satellites sont chargées une à une et réassemblées en image animée avec la librairie gallery.css pour reveal.js -->
-			    <section data-autoslide="11000">
+			    <!-- Satellite visible France - GIF animé -->
+			    <section>
                     <h4>Satellite visible France</h4>
-                    <ul class="gallery" data-interval="0.5" data-iterations="2">
-                        <script>
-                            var minutesat = minutes;
-                            var hoursat = hours;
-            
-            
-                            if(minutesat>=0){minutesat = '00';}
-                            if(minutesat>=15){minutesat = '15';}
-                            if(minutesat>=30){minutesat = '30';}
-                            if(minutesat>=45){minutesat = '45';}
-            
-                            var previousSat = function(){
-                                if(minutesat=='00'){minutesat = '45'; hoursat--; if(hoursat.toString().length==1){var zero = '0'; hoursat = zero.concat(hoursat);}}
-                                else{ 
-                                    if(minutesat=='15'){minutesat = '00';}
-                                    else{
-                                        if(minutesat=='30'){minutesat = '15';}
-                                        else{
-                                            if(minutesat=='45'){minutesat = '30';}
-                                        }
-                                    }
-                                }
-                            }
-            
-                            var arrayImages = [];
-                            for(i=0; i<10; i++){
-                                arrayImages.push('<li><img src="https://fr.sat24.com/image?type=visual&region=fr&timestamp='+ymd+hoursat+minutesat+ '"></li>');
-                                previousSat();
-                            }
-                            for(j=arrayImages.length-1; j>0; j--){
-                                document.write(arrayImages[j]);
-                                if(j==1){document.write(arrayImages[j]); document.write(arrayImages[j]);}
-                            }
-                        </script>
-                    </ul>
+                    <img src="https://neige.meteociel.fr/satellite/anim_vis_fr.gif" style="height:620px;">
 			    </section>
-			
+
 			    <!-- un slide -->
 			    <section>
                     <h4>Géopotentielle à 500mb</h4>
@@ -509,7 +456,13 @@
                 <section data-autoslide="1">
                     <iframe src="https://www.notaminfo.com/francemap" width="1024" height="768"></iframe>
                 </section>
-			
+
+			<!-- Carte OACI Géoportail centrée sur LFGU -->
+				<section>
+					<h4>Carte OACI - Sarreguemines (LFGU)</h4>
+					<iframe width="1024" height="768" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" sandbox="allow-forms allow-scripts allow-same-origin" src="https://www.geoportail.gouv.fr/embed/visu.html?c=7.0606,49.1089&z=10&l0=GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN-OACI::GEOPORTAIL:OGC:WMTS(1)&permalink=yes" allowfullscreen></iframe>
+				</section>
+
 			<!-- demain -->
 			    <section>
                     <h2>Demain</h2>
