@@ -106,16 +106,6 @@
 			    <section>
                     <h1>Briefing Météo</h1>
                     <p><small>Lorraine - Alsace <script>document.write(day+'/'+month+'/'+year);</script></small></p>
-                    <!-- une astuce qui permet de se connecter automatiquement au site de météo france pour accéder aux cartes des vent (utilisez votre login et mot de passe tel que décrit dans https://github.com/gabouls8/briefing-meteo/blob/master/README.md) -->
-                    <form id='formloginaeroweb' action="https://aviation.meteo.fr/ajax/login_valid.php" target="aeroweb-iframe" method="post">
-                        <input type="hidden" name='login' value='krogoth57'>
-                        <input type="hidden" name='password' value='e50d0d87468500d0400c8f7a6da93739'>
-                    </form>
-                    <iframe type="hidden" name='aeroweb-iframe' src="https://aviation.meteo.fr/ajax/login_valid.php" width="0" height="0"></iframe>
-                    <script type="text/javascript">
-                        document.getElementById('formloginaeroweb').submit();
-                        sleep(2000); //pas très élégant, faute de mieux ça permet d'attendre la connexion à météo france avant de charger les cartes       
-                    </script>
 			    </section>
 			              
 		
@@ -168,84 +158,26 @@
                     <script>document.write('<img src="https://modeles7.meteociel.fr/modeles/arome/runs/'+ymd+'00/aromehd-1-17-4.png" style="height:620px;">');</script>
 			    </section>
 			
-			<!-- meteo france -->
-                <!-- les cartes de vent sont chargées en deux slides superposés, celle du dessus à 12H, celle du dessous à 15h -->
-                <section>
-                <section>
-                    <h4>12H UTC 5500m</h4>
-                    <script>
-                        document.write('<img src="https://aviation.meteo.fr/affiche_image.php?time=1455464332&type=regional/france/wind-fl180&date='+ymd+'120000&mode=img&comment=" alt="connect to https://aviation.meteo.fr/login.php and relaunch" style="max-height:620px">');
-                    </script>
-                    <p><a href="https://aviation.meteo.fr/login.php" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Aéroweb</a></p>
-                </section>
-            
-                <section>
-                    <h4>15H UTC 5500m</h4>
-                    <script>
-                        document.write('<img src="https://aviation.meteo.fr/affiche_image.php?time=1455464332&type=regional/france/wind-fl180&date='+ymd+'150000&mode=img&comment=" alt="connect to https://aviation.meteo.fr/login.php and relaunch" style="max-height:620px">');
-                    </script>
-                    <p><a href="https://aviation.meteo.fr/login.php" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Aéroweb</a></p>    
-                </section>
-                </section>
+			<!-- Cartes des vents (ac-sologne.fr - pas de login requis) -->
+				<section>
+					<h4>Carte des vents à 12H UTC à 10m</h4>
+					<img src="http://www.ac-sologne.fr/briefing/aeroweb/regionalfrancewind-pmer-10m12H.png" style="max-width:100%; max-height:100%; height:620px">
+				</section>
 
-                <!-- les cartes de vent sont chargées en deux slides superposés, celle du dessus à 12H, celle du dessous à 15h -->
-                <section>
-                <section>
-                    <h4>12H UTC 3000m</h4>
-                    <script>
-                        document.write('<img src="https://aviation.meteo.fr/affiche_image.php?time=1455464332&type=regional/france-ne/wind-fl100&date='+ymd+'120000&mode=img&comment=" alt="connect to https://aviation.meteo.fr/login.php and relaunch" style="max-height:620px">');
-                    </script>
-                    <p><a href="https://aviation.meteo.fr/login.php" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Aéroweb</a></p>
-                </section>
-            
-                <section>
-                    <h4>15H UTC 3000m</h4>
-                    <script>
-                        document.write('<img src="https://aviation.meteo.fr/affiche_image.php?time=1455464332&type=regional/france-ne/wind-fl100&date='+ymd+'150000&mode=img&comment=" alt="connect to https://aviation.meteo.fr/login.php and relaunch" style="max-height:620px">');
-                    </script>
-                    <p><a href="https://aviation.meteo.fr/login.php" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Aéroweb</a></p>    
-                </section>
-                </section>
-			
-			
-			    <!-- les cartes de vent sont chargées en deux slides superposés, celle du dessus à 12H, celle du dessous à 15h -->
-			    <section>
-			    <section>
-                    <h4>12H UTC 1500m</h4>
-                    <script>
-                        document.write('<img src="https://aviation.meteo.fr/affiche_image.php?time=1455464332&type=regional/france-ne/wind-fl050&date='+ymd+'120000&mode=img&comment=" alt="connect to https://aviation.meteo.fr/login.php and relaunch" style="max-height:620px">');
-                    </script>
-                    <p><a href="https://aviation.meteo.fr/login.php" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Aéroweb</a></p>
-			    </section>
-			
-			    <section>
-                    <h4>15H UTC 1500m</h4>
-                    <script>
-                        document.write('<img src="https://aviation.meteo.fr/affiche_image.php?time=1455464332&type=regional/france-ne/wind-fl050&date='+ymd+'150000&mode=img&comment=" alt="connect to https://aviation.meteo.fr/login.php and relaunch" style="max-height:620px">');
-                    </script>
-                    <p><a href="https://aviation.meteo.fr/login.php" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Aéroweb</a></p>
-			    </section>
-			    </section> 
-			
-			
-			    <!-- les cartes de vent sont chargées en deux slides superposés, celle du dessus à 12H, celle du dessous à 15h -->
-			    <section>    
-			    <section>
-                    <h4>12H UTC Surface</h4>
-                    <script>
-                        document.write('<img src="https://aviation.meteo.fr/affiche_image.php?time=1455464332&type=regional/france-ne/wind-10m&date='+ymd+'120000&mode=img&comment=" alt="connect to https://aviation.meteo.fr/login.php and relaunch" style="max-height:620px">');
-                    </script>
-                    <p><a href="https://aviation.meteo.fr/login.php" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Aéroweb</a></p>
-			    </section>
-			
-			    <section>
-                    <h4>15H UTC Surface</h4>
-                    <script>
-                        document.write('<img src="https://aviation.meteo.fr/affiche_image.php?time=1455464332&type=regional/france-ne/wind-10m&date='+ymd+'150000&mode=img&comment=" alt="connect to https://aviation.meteo.fr/login.php and relaunch" style="max-height:620px">');
-                    </script>
-                    <p><a href="https://aviation.meteo.fr/login.php" onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;">Aéroweb</a></p>
-			    </section>
-			    </section>
+				<section>
+					<h4>Carte des vents à 12H UTC à 1500m</h4>
+					<img src="http://www.ac-sologne.fr/briefing/aeroweb/regionalfrancewind-fl05012H.png" style="max-width:100%; max-height:100%; height:620px">
+				</section>
+
+				<section>
+					<h4>Carte des vents à 15H UTC à 10m</h4>
+					<img src="http://www.ac-sologne.fr/briefing/aeroweb/regionalfrancewind-pmer-10m15H.png" style="max-width:100%; max-height:100%; height:620px">
+				</section>
+
+				<section>
+					<h4>Carte des vents à 15H UTC à 1500m</h4>
+					<img src="http://www.ac-sologne.fr/briefing/aeroweb/regionalfrancewind-fl05015H.png" style="max-width:100%; max-height:100%; height:620px">
+				</section>
 			
 			<!-- ogimet st auban -->
 			    <section>
